@@ -3,7 +3,7 @@ from app.db.models import Category as CategoryModel
 from app.schemas.category import Category
 
 
-def test_add_category(db_session):
+def test_add_category_uc(db_session):
     uc = CategoryUseCases(db_session)
 
     category = Category(

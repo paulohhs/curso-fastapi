@@ -20,3 +20,17 @@ class ProductUseCases:
 
         self.db_session.add(product_model)
         self.db_session.commit()
+
+    def update_product(self, id: int, product: Product):
+        product_on_db = self.db_session.query(ProductModel).filter_by(id=id).first()
+
+        if not product_on_db:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Product not found with id {id}")
+        
+        product_on_db.name = product.name
+        product_on_db.slug = product.slug
+        product_on_db.price = product.price
+        product_on_db.stock = product.stock
+
+        self.db_session.add(product_on_db)
+        self.db_session.commit()

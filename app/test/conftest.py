@@ -15,7 +15,7 @@ def db_session():
 @pytest.fixture()
 def categories_on_db(db_session):
     categories = [
-        CategoryModel(name="Roupa", slug="roupa"),
+        CategoryModel(name="Roupa de cama", slug="roupa-de-cama"),
         CategoryModel(name="Carro", slug="carro"),
         CategoryModel(name="Itens de cozinha", slug="itens-de-cozinha"),
         CategoryModel(name="Decoracao", slug="decoracao"),

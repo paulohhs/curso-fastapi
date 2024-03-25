@@ -17,7 +17,7 @@ def test_add_product_route(db_session, categories_on_db):
         }
     }
 
-    response = client.post("/products", json=body)
+    response = client.post("/product/add", json=body)
 
     assert response.status_code == status.HTTP_201_CREATED
 
@@ -40,7 +40,7 @@ def test_add_product_route_invalid_category_slug(db_session):
         }
     }
 
-    response = client.post("/products", json=body)
+    response = client.post("/product/add", json=body)
 
     assert response.status_code == status.HTTP_404_NOT_FOUND
 

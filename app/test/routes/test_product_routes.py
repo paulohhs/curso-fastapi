@@ -47,3 +47,46 @@ def test_add_product_route_invalid_category_slug(db_session):
     products_on_db = db_session.query(ProductModel).all()
 
     assert len(products_on_db) == 0
+
+
+def test_update_product_route(db_session, product_on_db):
+    assert product_on_db.name == "Fronha"
+    assert product_on_db.slug == "fronha"
+    assert product_on_db.price == 100.0
+    assert product_on_db.stock == 20
+
+    body = {
+        "name": "Lencol de casal",
+        "slug": "lencol-de-casal",
+        "price": 22.99,
+        "stock": 22
+    }
+
+    response = client.put(f"/product/update/{product_on_db.id}", json=body)
+
+    assert response.status_code == status.HTTP_200_OK
+
+    db_session.refresh(product_on_db)
+
+    assert product_on_db.name == body["name"]
+    assert product_on_db.slug == body["slug"]
+    assert product_on_db.price == body["price"]
+    assert product_on_db.stock == body["stock"]
+
+
+def test_update_product_route_invalid_id(product_on_db):
+    assert product_on_db.name == "Fronha"
+    assert product_on_db.slug == "fronha"
+    assert product_on_db.price == 100.0
+    assert product_on_db.stock == 20
+
+    body = {
+        "name": "Lencol de casal",
+        "slug": "lencol-de-casal",
+        "price": 22.99,
+        "stock": 22
+    }
+
+    response = client.put(f"/product/update/1", json=body)
+
+    assert response.status_code == status.HTTP_404_NOT_FOUND

@@ -62,35 +62,35 @@ def product_on_db(db_session):
 
 @pytest.fixture()
 def products_on_db(db_session):
-    category = CategoryModel(name="Roupa de cama", slug="roupa-de-cama")
+    category = CategoryModel(name="Roupa", slug="roupa")
     db_session.add(category)
     db_session.commit()
 
     products = [
         ProductModel(
-            name="Fronha",
-            slug="fronha",
+            name="Camisa Mike",
+            slug="camisa-mike",
             price=50.0,
             stock=20,
             category_id=category.id
         ),
         ProductModel(
-            name="Fronha casal",
-            slug="fronha-casal",
+            name="Moletom Mike",
+            slug="moletom",
             price=100.0,
             stock=20,
             category_id=category.id
         ),
         ProductModel(
-            name="Lencol de casal",
-            slug="lencol-de-casal",
+            name="Camisa",
+            slug="camisa-mike",
             price=22.99,
             stock=22,
             category_id=category.id
         ),
         ProductModel(
-            name="Lencol de solteiro",
-            slug="lencol-de-solteiro",
+            name="Short",
+            slug="short",
             price=15.99,
             stock=10,
             category_id=category.id

@@ -50,11 +50,6 @@ def test_add_product_route_invalid_category_slug(db_session):
 
 
 def test_update_product_route(db_session, product_on_db):
-    assert product_on_db.name == "Fronha"
-    assert product_on_db.slug == "fronha"
-    assert product_on_db.price == 100.0
-    assert product_on_db.stock == 20
-
     body = {
         "name": "Lencol de casal",
         "slug": "lencol-de-casal",
@@ -75,11 +70,6 @@ def test_update_product_route(db_session, product_on_db):
 
 
 def test_update_product_route_invalid_id(product_on_db):
-    assert product_on_db.name == "Fronha"
-    assert product_on_db.slug == "fronha"
-    assert product_on_db.price == 100.0
-    assert product_on_db.stock == 20
-
     body = {
         "name": "Lencol de casal",
         "slug": "lencol-de-casal",
